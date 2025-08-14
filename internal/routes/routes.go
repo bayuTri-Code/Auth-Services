@@ -25,7 +25,7 @@ func Routes() *gin.Engine {
 		})
 	})
 
-	service := r.Group("/api")
+	service := r.Group("/auth")
 	{
 		service.GET("/register", handler.RegisterHandler)
 		service.GET("/login", handler.LoginHandler)
