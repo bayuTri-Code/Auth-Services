@@ -27,7 +27,7 @@ func ConfigDb(){
 	if err := viper.ReadInConfig(); err != nil {
 		log.Fatalf("Cannot to read config file, %s", err)
 	}
-
+   
 	DbConfig = &Config{
 		DBHost: viper.GetString("DB_HOST"),
 		DBPort: viper.GetString("DB_PORT"),
