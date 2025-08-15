@@ -27,8 +27,8 @@ func Routes() *gin.Engine {
 
 	service := r.Group("/auth")
 	{
-		service.GET("/register", handler.RegisterHandler)
-		service.GET("/login", handler.LoginHandler)
+		service.POST("/register", handler.RegisterHandler)
+		service.POST("/login", handler.LoginHandler)
 	}
 	
 	return r
