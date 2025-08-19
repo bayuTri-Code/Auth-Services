@@ -1,6 +1,7 @@
 package routes
 
 import (
+	"github.com/gin-contrib/cors"
 	"log"
 
 	"github.com/bayuTri-Code/Auth-Services/internal/handler"
@@ -13,6 +14,14 @@ func Routes() *gin.Engine {
 	r := gin.New()
 
 	r.Use(gin.Recovery())
+
+	r.Use(cors.New(cors.Config{
+		AllowOrigins:     []string{"http://localhost:5173", "http://127.0.0.1:5173"},
+		AllowMethods:     []string{"GET", "POST", "PUT", "DELETE", "OPTIONS"},
+		AllowHeaders:     []string{"Origin", "Content-Type", "Authorization"},
+		ExposeHeaders:    []string{"Content-Length"},
+		AllowCredentials: true,
+	}))
 
 	err := r.SetTrustedProxies([]string{"127.0.0.1"})
 	if err != nil {
@@ -30,6 +39,6 @@ func Routes() *gin.Engine {
 		service.POST("/register", handler.RegisterHandler)
 		service.POST("/login", handler.LoginHandler)
 	}
-	
+
 	return r
 }

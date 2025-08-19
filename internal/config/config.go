@@ -14,7 +14,6 @@ type Config struct {
 	DBPassword string
 	DBName string
 	DBSslmode string
-
 }
 
 var DbConfig *Config
