@@ -17,7 +17,7 @@ import (
 // @Param request body models.RegisterRequest true "Register request"
 // @Success 201 {object} models.RegisterResponse
 // @Failure 400 {object} models.ResponseError
-// @Router /register [post]
+// @Router /auth/register [post]
 func RegisterHandler(c *gin.Context) {
 	var req models.RegisterRequest
 	if err := c.ShouldBindJSON(&req); err != nil {
@@ -52,7 +52,7 @@ func RegisterHandler(c *gin.Context) {
 // @Param request body models.LoginRequest true "Login request"
 // @Success 200 {object} models.LoginResponse
 // @Failure 400 {object} models.ResponseError
-// @Router /login [post]
+// @Router /auth/login [post]
 func LoginHandler(c *gin.Context) {
 	var req models.LoginRequest
 	if err := c.ShouldBindJSON(&req); err != nil {

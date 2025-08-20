@@ -63,7 +63,7 @@ info:
   title: Auth Service API
   version: "1.0"
 paths:
-  /login:
+  /auth/login:
     post:
       consumes:
       - application/json
@@ -89,7 +89,7 @@ paths:
       summary: Login user
       tags:
       - Auth
-  /register:
+  /auth/register:
     post:
       consumes:
       - application/json
