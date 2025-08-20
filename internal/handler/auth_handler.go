@@ -63,12 +63,13 @@ func LoginHandler(c *gin.Context) {
 			Name:  user.Name,
 			Email: user.Email,
 		},
-		Token: token,
+		
 	}
 
 	c.JSON(http.StatusOK, gin.H{
 		"success": true,
 		"message": "Login success",
 		"data":    resp,
+		"Token": token,
 	})
 }
