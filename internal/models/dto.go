@@ -1,16 +1,9 @@
 package models
 
-
-import (
-	"github.com/google/uuid"
-)
-
-
 type RegisterRequest struct {
-	ID       uuid.UUID `gorm:"type:char(36);primary_key" json:"id"`
-	Name     string    `json:"name" binding:"required"`
-	Email    string    `json:"email" binding:"required"`
-	Password string    `json:"password" binding:"required"`
+	Name     string `json:"name" binding:"required"`
+	Email    string `json:"email" binding:"required"`
+	Password string `json:"password" binding:"required"`
 }
 
 type LoginRequest struct {
@@ -18,13 +11,30 @@ type LoginRequest struct {
 	Password string `json:"password"`
 }
 
-type RegisterResponse struct {
-	ID    uuid.UUID `json:"id"`
-	Name  string    `json:"name"`
-	Email string    `json:"email"`
+type BaseResponse struct {
+	Success bool   `json:"success"`
+	Message string `json:"message"`
 }
 
+type RegisterResponse struct {
+    BaseResponse
+    Data UserResponse `json:"data"`
+}
+
+
 type LoginResponse struct {
-	Token string           `json:"token"`
-	User  RegisterResponse `json:"user"`
+    BaseResponse
+    Token string       `json:"token"`
+    Data  UserResponse `json:"data"`
+}
+
+type UserResponse struct {
+    ID    string `json:"id"`
+    Name  string `json:"name"`
+    Email string `json:"email"`
+}
+
+type ResponseError struct {
+	Status  string `json:"status"`
+	Message string `json:"message"`
 }
