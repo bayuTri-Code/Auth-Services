@@ -5,6 +5,7 @@ import (
 	"log"
 
 	"github.com/bayuTri-Code/Auth-Services/internal/config"
+	"github.com/bayuTri-Code/Auth-Services/internal/models"
 	"gorm.io/driver/postgres"
 	"gorm.io/gorm"
 )
@@ -30,4 +31,16 @@ func PostgresConn(){
 
 	Db = db
 	log.Println("Database Connected")
+	autoMigrate()
+}
+
+func autoMigrate() {
+	err := Db.AutoMigrate(
+		&models.AuthData{},
+	)
+
+	if err != nil {
+		log.Fatalf("Auto Migration Failed: %v", err)
+	}
+	log.Println("Auto Migration Complete!")
 }
